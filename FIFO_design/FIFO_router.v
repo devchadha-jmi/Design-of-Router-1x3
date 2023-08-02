@@ -12,12 +12,12 @@ module fifo_min_project#(parameter width = 9,
 );
   
   // Internal Signals for FIFO to function---------------
-  reg [4:0] rd_ptr;     // Fifo depth is 16, pointer of 4 bit would be sufficient,
-  reg [4:0] wr_ptr;		// but 4'b0 is untouched state, 
+  reg [$clog2(depth)-1:0] rd_ptr,wr_ptr;     // Fifo depth is 16, pointer of 4 bit would be sufficient,
+ 		// but 4'b0 is untouched state, 
   						// so counter counts from 5'b00000 till 5'b10000
   
   // Fifo counter drives full and empty flags
-  reg [4:0] fifo_counter;
+  reg [$clog2(depth):0] fifo_counter;
   
   // Read and Write Logics
   wire READ  = ~(~resetn || soft_reset) &&!empty && read_enb;
@@ -25,10 +25,10 @@ module fifo_min_project#(parameter width = 9,
   
   // Defining FIFO Memory
   // 9 bit wide fifo with a depth 16
-  reg [width-1:0]FIFO[depth-1:0];
+  reg [width-1:0]FIFO[depth];
   
   // Temporary Data Out for adding timer logic to the IP
-  reg [8:0]data_out_temp;
+  reg [width-1:0]data_out_temp;
   
   // FLAGS Driving Logic ---------------------------------
   always @ (*)
@@ -66,7 +66,7 @@ module fifo_min_project#(parameter width = 9,
       // Data out is 0 when reset
       if (~resetn | soft_reset)
         begin
-          for(int i = 0; i < 16; i++)
+          for(int i = 0; i < depth; i++)
             begin
               FIFO[i] <= 'b0;
             end
@@ -178,7 +178,7 @@ module Timer (input clock,
       case (state)
         idle:    	next_state = (READ) ? first_byte : idle;
         first_byte: next_state = (READ && load_timer) ? out_enb : idle;
-        out_enb: 	next_state = (counter == 7'b0) ? idle : out_enb;
+        out_enb: 	next_state = (counter == 'b0) ? idle : out_enb;
         default  	next_state = idle;
       endcase
     end
@@ -188,10 +188,10 @@ module Timer (input clock,
   always @ (posedge clock)
     begin
       if (~resetn || soft_reset)
-        counter <= 7'b0;
+        counter <= 'b0;
       else if (load_timer)
         counter <= data + 1'b1;
-      else if (counter != 7'b0 && (state == out_enb))
+      else if (counter != 'b0 && (state == out_enb))
         counter <= counter - 1'b1;
       else
         counter <= counter;

@@ -52,10 +52,10 @@ module fifo_router_tb;
     #10;
     for (int i = 0; i < 20; i++)
       begin
-        //data_in = $random%512; 	// This can be tough to test
+        data_in = $random%512; 	// This can be tough to test
         						 	// unless we have a 
         						 	//self-testing testbench
-        data_in = 9'b101010100;
+       // data_in = 9'b101010100;
         #10;
       end
     write_enb = 0;
