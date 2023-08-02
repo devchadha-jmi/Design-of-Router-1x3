@@ -37,4 +37,12 @@ During the time-out state of the ROUTER:
   - During the time-out state of the ROUTER.
 - Read and write operations can be performed simultaneously.
 
+#### Simulations
+
+<p align="center">
+<img width="915" alt="image" src="https://github.com/devchadha-jmi/Design-of-Router-1x3/assets/82091082/52ea21dc-1ef8-4b0e-930a-d531315468a6">
+</p>
+
+EDAPlayground Link: https://edaplayground.com/x/EcbC
+
 
