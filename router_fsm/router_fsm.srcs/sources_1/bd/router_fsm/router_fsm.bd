@@ -1,0 +1,13 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "gen_directory": "../../../../router_fsm.gen/sources_1/bd/router_fsm",
+      "name": "router_fsm",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2022.2"
+    },
+    "design_tree": {}
+  }
+}
