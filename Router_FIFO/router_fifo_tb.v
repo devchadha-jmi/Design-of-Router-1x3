@@ -1,4 +1,4 @@
-module fifo_router_tb;
+module router_fifo_tb;
 
   // Inputs
   reg clock = 1;
@@ -15,7 +15,7 @@ module fifo_router_tb;
   wire empty;
 
   // Instantiate the FIFO Router
-  fifo_min_project dut (
+  router_fifo dut (
     .clock(clock),
     .resetn(resetn),
     .soft_reset(soft_reset),

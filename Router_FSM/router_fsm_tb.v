@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module router_fsm_tb;
   // Inputs
   reg clock;

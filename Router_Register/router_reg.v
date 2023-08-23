@@ -3,7 +3,7 @@ module router_reg (
   input 		resetn,
   input 		pkt_valid,
   input	[7:0]	data_in,
-  input 		fifo_full,
+  input  		fifo_full,
   input 		rst_int_reg,
   input 		detect_add,
   input 		ld_state,
@@ -119,4 +119,3 @@ module router_reg (
   
   
 endmodule
-  
